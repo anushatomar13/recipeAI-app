@@ -1,31 +1,51 @@
 import { NextResponse } from "next/server";
-import axios from "axios";
+import Groq from "groq-sdk";
 
-export async function POST(req: Request) {
+const groqApiKey = process.env.GROQ_API_KEY;
+
+if (!groqApiKey) {
+  throw new Error("GROQ_API_KEY is missing from environment variables!");
+}
+
+const groq = new Groq({ apiKey: groqApiKey });
+
+export async function POST(request: Request) {
   try {
-    const { ingredients } = await req.json(); // Get ingredients from request body
+    const { ingredients } = await request.json();
 
-    const response = await axios.post(
-      "https://api.groq.com/v1/chat/completions",
-      {
-        model: "llama3-8b-8192", // Or another model Groq provides
-        messages: [
-          { role: "system", content: "You are a helpful AI recipe generator." },
-          { role: "user", content: `Suggest a recipe using these ingredients: ${ingredients}` },
-        ],
-        max_tokens: 500,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    if (!ingredients || ingredients.trim() === "") {
+      return NextResponse.json(
+        { error: "Recipe ingredients required!" },
+        { status: 400 }
+      );
+    }
 
-    return NextResponse.json(response.data);
+    const prompt = `I have the following ingredients: ${ingredients}. Suggest exactly 5 dish names, each on a new line, without any extra text or numbering.`;
+
+    const recipeSuggestion = await groq.chat.completions.create({
+      messages: [{ role: "user", content: prompt }],
+      model: "llama3-8b-8192",
+    });
+
+    const responseMessage = recipeSuggestion.choices[0]?.message?.content?.trim() || "";
+
+    if (!responseMessage) {
+      return NextResponse.json({ error: "No response from Groq" }, { status: 500 });
+    }
+
+    // Extract dish names from response
+    const dishes = responseMessage.split("\n").map((dish) => dish.trim()).filter(Boolean);
+
+    if (dishes.length !== 5) {
+      return NextResponse.json({ error: "Invalid response format from Groq" }, { status: 500 });
+    }
+
+    return NextResponse.json({ dishes });
   } catch (error) {
-    console.error("Groq API error:", error);
-    return NextResponse.json({ error: "Failed to fetch recipes" }, { status: 500 });
+    console.error("Error in /api/groq:", error);
+    return NextResponse.json(
+      { error: "An error occurred while processing your request" },
+      { status: 500 }
+    );
   }
 }
