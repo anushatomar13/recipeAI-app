@@ -4,14 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
-import { Bookmark, BookmarkCheck } from "lucide-react"; // Import icons
+import { Bookmark, BookmarkCheck } from "lucide-react"; 
 
 export default function RecipeGenerator() {
   const [ingredients, setIngredients] = useState("");
   const [dishes, setDishes] = useState<string[]>([]);
   const [selectedDish, setSelectedDish] = useState<string | null>(null);
   const [recipe, setRecipe] = useState<string | null>(null);
-  const [bookmarkedDishes, setBookmarkedDishes] = useState<string[]>([]); // Track bookmarks
+  const [bookmarkedDishes, setBookmarkedDishes] = useState<string[]>([]); 
 
   async function fetchDishes() {
     const res = await fetch("/api/groq", {
