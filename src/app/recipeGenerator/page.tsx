@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
 
 export default function RecipeGenerator() {
   const [ingredients, setIngredients] = useState("");
@@ -42,31 +42,38 @@ export default function RecipeGenerator() {
 
   return (
     <div className="p-6 space-y-4">
-      <Input
-        placeholder="Enter ingredients (comma-separated)"
-        value={ingredients}
-        onChange={(e) => setIngredients(e.target.value)}
-      />
+     <Input
+  placeholder="Enter ingredients (comma-separated)"
+  value={ingredients}
+  onChange={(e) => setIngredients(e.target.value)}
+  className="w-full max-w-2xl h-14 p-4 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+/>
+
       <Button onClick={fetchDishes}>Get Dish Suggestions</Button>
 
-      <div className="flex space-x-4 overflow-x-auto py-4">
-        {dishes.map((dish) => (
-          <Dialog key={dish}>
-            <DialogTrigger asChild>
-              <Card
-                className="cursor-pointer p-4 min-w-[150px] text-center bg-gray-100 hover:bg-gray-200 transition"
-                onClick={() => fetchRecipe(dish)}
-              >
-                <CardContent>{dish}</CardContent>
-              </Card>
-            </DialogTrigger>
-            <DialogContent>
-              <h2 className="text-xl font-bold">{selectedDish}</h2>
-              <p>{recipe || "Loading recipe..."}</p>
-            </DialogContent>
-          </Dialog>
-        ))}
-      </div>
+      <div className="flex flex-col space-y-4 py-4">
+  {dishes.map((dish) => (
+    <Dialog key={dish}>
+      <DialogTrigger asChild>
+        <Card
+          className="cursor-pointer p-4 min-w-[180px] text-center text-white text-lg font-semibold rounded-xl 
+                   shadow-md hover:scale-95 font-mono transition-all duration-300 ease-in-out
+                   bg-gradient-to-b from-purple-900 to-black
+ hover:from-gray-700 hover:to-gray-900"
+          onClick={() => fetchRecipe(dish)}
+        >
+          <CardContent>{dish}</CardContent>
+        </Card>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogTitle>{selectedDish}</DialogTitle>
+        <div dangerouslySetInnerHTML={{ __html: recipe || "Loading recipe..." }} />
+      </DialogContent>
+    </Dialog>
+  ))}
+</div>
+
+
     </div>
   );
 }
