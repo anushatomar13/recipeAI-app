@@ -16,7 +16,7 @@
 ✅ **Responsive UI:** Beautiful UI built with Tailwind and ShadCN components.  
 
 
-![alt text](image-1.png)
+![alt text](image-2.png)
 
 ## 📦 Setup & Installation  
 
