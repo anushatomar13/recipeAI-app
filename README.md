@@ -8,7 +8,7 @@
 - **State Management:** useState, useEffect  
 
 ## ✨ Features  
-✅ **Generate Recipes:** Enter ingredients and get AI-generated dish suggestions.  
+✅ **Generate Recipes:** Enter ingredients and get AI-generated dish suggestions by using Groq API.
 ✅ **View Detailed Recipes:** Click on a dish to fetch step-by-step recipes from Spoonacular.  
 ✅ **Bookmark Recipes:** Save favorite recipes with a single click.  
 ✅ **Supabase Integration:** Store and manage bookmarked recipes in a database.  
