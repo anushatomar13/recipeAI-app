@@ -2,43 +2,44 @@ import { cn } from "@/lib/utils";
 import { Marquee } from "./magicui/marquee";
 
 const reviews = [
-  {
-    name: "Jack",
-    username: "@jack",
-    body: "I've never seen anything like this before. It's amazing. I love it.",
-    img: "https://avatar.vercel.sh/jack",
-  },
-  {
-    name: "Jill",
-    username: "@jill",
-    body: "I don't know what to say. I'm speechless. This is amazing.",
-    img: "https://avatar.vercel.sh/jill",
-  },
-  {
-    name: "John",
-    username: "@john",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/john",
-  },
-  {
-    name: "Jane",
-    username: "@jane",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/jane",
-  },
-  {
-    name: "Jenny",
-    username: "@jenny",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/jenny",
-  },
-  {
-    name: "James",
-    username: "@james",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/james",
-  },
-];
+    {
+      name: "Sophia",
+      username: "@sophia",
+      body: "This AI recipe generator changed my cooking! It gave me a delicious meal idea with just a few ingredients.",
+      img: "https://avatar.vercel.sh/sophia",
+    },
+    {
+      name: "Liam",
+      username: "@liam",
+      body: "I never knew I could cook such amazing dishes with what I had in my fridge. This app is a lifesaver!",
+      img: "https://avatar.vercel.sh/liam",
+    },
+    {
+      name: "Olivia",
+      username: "@olivia",
+      body: "The AI suggestions are so creative! I love how it gives me different meal ideas every time.",
+      img: "https://avatar.vercel.sh/olivia",
+    },
+    {
+      name: "Noah",
+      username: "@noah",
+      body: "I tried a recipe suggested by the AI, and it turned out perfect! I’m impressed by the accuracy.",
+      img: "https://avatar.vercel.sh/noah",
+    },
+    {
+      name: "Emma",
+      username: "@emma",
+      body: "I was struggling to find healthy meal ideas, but this app made it easy. Highly recommended!",
+      img: "https://avatar.vercel.sh/emma",
+    },
+    {
+      name: "Oliver",
+      username: "@oliver",
+      body: "I’m not a great cook, but this app makes it so simple. The step-by-step instructions are super helpful!",
+      img: "https://avatar.vercel.sh/oliver",
+    },
+  ];
+  
 
 const firstRow = reviews.slice(0, reviews.length / 2);
 const secondRow = reviews.slice(reviews.length / 2);
